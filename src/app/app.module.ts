@@ -13,6 +13,9 @@ import { AddMangaComponent } from './components/add-manga/add-manga.component';
 
 import { MangaService } from './services/manga.service';
 
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,8 @@ import { MangaService } from './services/manga.service';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
   providers: [MangaService],
   bootstrap: [AppComponent]

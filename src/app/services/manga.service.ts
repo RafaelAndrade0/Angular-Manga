@@ -13,10 +13,12 @@ export class MangaService {
   mangaCollection: AngularFirestoreCollection<Manga>;
   mangas: Observable<Manga[]>;
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) { 
+    this.mangaCollection = this.db.collection('mangas');
+  }
 
   getMangas() {
-    this.mangaCollection = this.db.collection('mangas');
+    // this.mangaCollection = this.db.collection('mangas');
     this.mangas = this.mangaCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Manga;
@@ -25,5 +27,9 @@ export class MangaService {
       }))
     );
     return this.mangas;
+  }
+
+  addManga(manga: Manga) {
+    this.mangaCollection.add(manga);
   }
 }

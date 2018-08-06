@@ -1,3 +1,33 @@
-<p>
-  add-manga works!
-</p>
+<div class="add-form container">
+  <form (ngSubmit)="onAddManga()" #addMangaForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input required [(ngModel)]="newManga.title" type="text" name="title" 
+        class="form-control" #title="ngModel">
+
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger" role="alert">
+        The title is required
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea [(ngModel)]="newManga.description" class="form-control" 
+        name="description" rows="3" #description="ngModel">
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="chapters">Chapters</label>
+      <input [(ngModel)]="newManga.chapters" type="number" name="chapters"
+        class="form-control" #chapters="ngModel">
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!addMangaForm.form.valid">
+        Add Manga
+      </button>
+    </div>
+  </form>
+</div>
